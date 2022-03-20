@@ -49,10 +49,22 @@ func createQuestions(problems [][]string) []Questions {
 	return questions
 }
 
+func startQuiz(questions []Questions) {
+	var counter int
+	var answer string
+	for index, element := range questions {
+		f.Println("Question No.", index, "\n", element.question)
+		f.Scanln(&answer)
+		if answer == element.answer {
+			counter++
+		}
+	}
+	f.Println("Your Score", counter)
+}
+
 func main() {
 	f.Println("Quiz Master!")
 	problems := readCSV("questions/problems.csv")
-	questions := createQuestions(problems)
-
-	f.Println(questions)
+	quiz := createQuestions(problems)
+	startQuiz(quiz)
 }
